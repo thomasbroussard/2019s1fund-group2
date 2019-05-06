@@ -1,5 +1,7 @@
 package fr.epita.bank.launcher;
 
+import java.util.Scanner;
+
 import fr.epita.bank.datamodel.Savings;
 
 public class Main {
@@ -13,10 +15,14 @@ public class Main {
 		
 		System.out.println(interest);
 		
-		savings.withDraw(200);
 		
+		System.out.println("please, type an amount to withdraw from savings");
+		Scanner scanner = new Scanner(System.in);
+		double amount = scanner.nextDouble();		
+		savings.withDraw(amount);
 		
-		
+		System.out.println("you have successfully withdrawn : " + amount);
+		scanner.close();
 		
 		
 		
