@@ -8,8 +8,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("welcome in the application");
+		Scanner scanner = new Scanner(System.in);
 		
-		Savings savings = new Savings(500,0.0075);
+		Savings savings = createSavings(scanner);
 		
 		double interest = savings.computeInterest();
 		
@@ -17,16 +18,28 @@ public class Main {
 		
 		
 		System.out.println("please, type an amount to withdraw from savings");
-		Scanner scanner = new Scanner(System.in);
-		double amount = scanner.nextDouble();		
+		
+		double amount = scanner.nextDouble();
 		savings.withDraw(amount);
 		
 		System.out.println("you have successfully withdrawn : " + amount);
+		
 		scanner.close();
 		
 		
 		
 
+	}
+	
+	private static Savings createSavings(Scanner scanner) {
+		System.out.println("Savings account creation");
+		System.out.println("Please enter an initial balance :");
+		double initialBalance = scanner.nextDouble();
+		System.out.println("Please set an interest rate :");
+		double rate = scanner.nextDouble();
+		Savings savings = new Savings(initialBalance,rate);
+		System.out.println("The creation was successful");
+		return savings;
 	}
 
 }
