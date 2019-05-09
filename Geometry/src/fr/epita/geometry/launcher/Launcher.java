@@ -1,5 +1,6 @@
 package fr.epita.geometry.launcher;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class Launcher {
 		Triangle triangle1 = new Triangle(10, 20, 30, 40);
 		Triangle triangle2 = new Triangle(20, 30, 40, 50);
 		Triangle triangle3 = new Triangle(30, 40, 50, 60);
-	
 		List<Shape> shapes = Arrays.asList(circle1, circle2, circle3, square1, square2, square3, triangle1, triangle2, triangle3);
+		
 		
 		double globalArea = 0.0;
 		double globalPerimeter = 0.0;
@@ -34,6 +35,8 @@ public class Launcher {
 		System.out.println("global area = " + globalArea);
 		System.out.println("global perimeter = " + globalPerimeter);
 		
+		Square square4 = new Square(4);
+	
 
 	}
 

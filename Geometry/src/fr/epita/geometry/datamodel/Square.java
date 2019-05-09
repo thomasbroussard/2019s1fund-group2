@@ -2,6 +2,8 @@ package fr.epita.geometry.datamodel;
 
 public class Square implements Shape{
 	
+	private Rectangle rectangle;
+	
 	private double side;
 
 	public double getSide() {
@@ -13,16 +15,15 @@ public class Square implements Shape{
 	}
 
 	public Square(double side) {
-		super();
-		this.side = side;
+		this.rectangle = new Rectangle(side, side);
 	}
 	
 	public double calculateArea() {
-		return this.side * this.side;
+		return this.rectangle.calculateArea();
 	}
 	
 	public double calculatePerimeter() {
-		return this.side * 4;
+		return this.rectangle.calculatePerimeter();
 	}
 	
 	
