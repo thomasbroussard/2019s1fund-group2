@@ -2,12 +2,17 @@ package fr.epita.bank.launcher;
 
 import java.util.Scanner;
 
+import fr.epita.bank.datamodel.ContactType;
 import fr.epita.bank.datamodel.Savings;
 
 public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("welcome in the application");
+		System.out.println(ContactType.MOBILE + " will be the label representing the customer mobile phone number "  );
+		System.out.println(ContactType.MOBILE.getDescription() + " is the description of that entry" );
+		
+		
 		Scanner scanner = new Scanner(System.in);
 		
 		Savings savings = createSavings(scanner);
