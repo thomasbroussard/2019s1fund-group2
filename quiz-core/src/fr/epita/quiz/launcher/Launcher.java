@@ -69,7 +69,7 @@ public class Launcher {
 		String password = scanner.nextLine();
 
 	
-		return !LOGIN.equals(login) || !PWD.equals(password);
+		return LOGIN.equals(login) && PWD.equals(password);
 	}
 
 }
