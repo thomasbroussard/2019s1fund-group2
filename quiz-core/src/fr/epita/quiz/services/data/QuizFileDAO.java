@@ -17,6 +17,11 @@ public class QuizFileDAO {
 	private File file;
 
 	public QuizFileDAO(File file) {
+		
+		if (!file.exists()) {
+			file.getAbsoluteFile().getParentFile().mkdirs();
+			file.createNewFile(); // todo handle Exception
+		}
 		this.file = file;
 	}
 	
