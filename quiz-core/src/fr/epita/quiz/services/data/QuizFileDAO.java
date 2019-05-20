@@ -3,10 +3,13 @@ package fr.epita.quiz.services.data;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import fr.epita.quiz.datamodel.Quiz;
 import fr.epita.quiz.exception.CreateFailedException;
+import fr.epita.quiz.exception.SearchFailedException;
 
 public class QuizFileDAO {
 
@@ -57,8 +60,28 @@ public class QuizFileDAO {
 	}
 
 	public List<Quiz> search(Quiz quizCriterion) {
-
-		return null;
+		List<Quiz> resultList = new ArrayList<>();
+		try (Scanner scanner = new Scanner(file)) {
+			// for each line in the file,
+			while(scanner.hasNext()) {
+				// 	read the line
+				String line = scanner.nextLine();
+				if (line.contains(quizCriterion.getTitle())) {
+					resultList.add(new Quiz(line));
+				}
+			}
+			
+		} catch (FileNotFoundException e) {
+			throw new SearchFailedException(quiz, e);
+		}
+		
+		
+		// 	compare to the criterion
+		//  if it is correct then put it in the result list
+		
+		// return the result list
+		
+		return resultList;
 	}
 
 }
