@@ -1,6 +1,6 @@
 package fr.epita.quiz.exception;
 
-public class CreateFailedException extends Exception{
+public class CreateFailedException extends DataAccessException{
 	
 	public Object getInstance() {
 		return instance;
@@ -10,12 +10,11 @@ public class CreateFailedException extends Exception{
 	
 	
 	public CreateFailedException(Object beanThatWasNotCreated) {
-		this.instance = beanThatWasNotCreated;
+		super(beanThatWasNotCreated);
 	}
 	
 	public CreateFailedException(Object beanThatWasNotCreated, Exception initialCause) {
-		this.instance = beanThatWasNotCreated;
-		this.initCause(initialCause);
+		super(beanThatWasNotCreated, initialCause);
 	}
 
 }

@@ -59,20 +59,22 @@ public class QuizFileDAO {
 
 	}
 
-	public List<Quiz> search(Quiz quizCriterion) {
+	public List<Quiz> search(Quiz quizCriterion) throws SearchFailedException {
 		List<Quiz> resultList = new ArrayList<>();
 		try (Scanner scanner = new Scanner(file)) {
 			// for each line in the file,
 			while(scanner.hasNext()) {
 				// 	read the line
 				String line = scanner.nextLine();
+				
 				if (line.contains(quizCriterion.getTitle())) {
-					resultList.add(new Quiz(line));
+					Quiz quiz = new Quiz(line);
+					resultList.add(quiz);
 				}
 			}
 			
 		} catch (FileNotFoundException e) {
-			throw new SearchFailedException(quiz, e);
+			throw new SearchFailedException(quizCriterion, e);
 		}
 		
 		
