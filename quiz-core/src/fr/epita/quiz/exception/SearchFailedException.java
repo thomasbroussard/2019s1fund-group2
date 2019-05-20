@@ -1,22 +1,13 @@
 package fr.epita.quiz.exception;
 
-public class SearchFailedException extends Exception {
-	public Object getInstance() {
-		return instance;
+public class SearchFailedException extends DataAccessException {
+
+	public SearchFailedException(Object badInput) {
+		super(badInput);
 	}
 
-	private Object instance;
-	
-	
-	public SearchFailedException(Object badInput) {
-		this.instance = badInput;
-	}
-	
 	public SearchFailedException(Object badInput, Exception initialCause) {
-		this.instance = badInput;
-		this.initCause(initialCause);
+		super(badInput,initialCause);
 	}
-	
-	
-	
+
 }

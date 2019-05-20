@@ -2,7 +2,7 @@ package fr.epita.quiz.exception;
 
 public class DataAccessException extends Exception {
 	
-	public Object getInstance() {
+	public Object getFaultInstance() {
 		return faultInstance;
 	}
 
