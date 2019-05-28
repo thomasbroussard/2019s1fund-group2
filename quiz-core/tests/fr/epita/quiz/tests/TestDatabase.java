@@ -15,18 +15,45 @@ public class TestDatabase {
 
 		select ID, NAME from QUIZ
 
-		insert into QUIZ (name) values ('Test Quiz')*/
+		insert into QUIZ (name) values ('Test Quiz')
+		UPDATE QUIZ SET NAME='Quiz Test 2' WHERE ID = 1;
+		DELETE QUIZ  WHERE ID = 1;
+		
+		*/
+		Connection connection = getConnection();
 		
 		
-		Connection connection = DriverManager.getConnection("jdbc:h2:~/test","sa","");
-		String schema = connection.getSchema();
-		System.out.println(schema);
+		//search(connection);
+		
+		//
+		
+
+	
+		
+		PreparedStatement pstmt = connection.prepareStatement("update QUIZ set NAME = ? where name=?");
+		pstmt.setString(1,"Test");
+		pstmt.setString(2, "Test Quiz");
+		pstmt.execute();
+		// TODO get the generated ID
+//		ResultSet rs = pstmt.getGeneratedKeys();
+//		int id = rs.getInt(1);
+//		System.out.println("generated ID : " + id);
+//		
+		
+//		rs.close();
+		pstmt.close();
+		connection.close();
 		
 		
+		
+
+	}
+
+	private static void search(Connection connection) throws SQLException {
 		String query = "select ID, NAME from QUIZ";
 		
 		PreparedStatement pstmt = connection.prepareStatement(query);
-		
+	
 		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
 			int id = rs.getInt("ID");
@@ -37,9 +64,11 @@ public class TestDatabase {
 		pstmt.close();
 		rs.close();
 		connection.close();
-		
-		
+	}
 
+	private static Connection getConnection() throws SQLException {
+		Connection connection = DriverManager.getConnection("jdbc:h2:tcp://localhost/./test2","test","");
+		return connection;
 	}
 
 }
