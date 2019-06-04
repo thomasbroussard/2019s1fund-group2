@@ -44,5 +44,8 @@ public class ConfigurationService {
 	public String getConfigurationValue(String key, String defaultValue) {
 		return props.getProperty(key, defaultValue);
 	}
+	public String getConfigurationValue(ConfigEntry key, String defaultValue) {
+		return props.getProperty(key.getKey(), defaultValue);
+	}
 
 }

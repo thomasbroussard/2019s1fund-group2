@@ -1,6 +1,5 @@
 package fr.epita.quiz.services.data;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,11 +11,11 @@ import java.util.List;
 import fr.epita.quiz.datamodel.Quiz;
 import fr.epita.quiz.exception.CreateFailedException;
 import fr.epita.quiz.exception.SearchFailedException;
+import fr.epita.quiz.services.ConfigEntry;
 import fr.epita.quiz.services.ConfigurationService;
 
 public class QuizJDBCDAO {
 
-	private static final String SEARCH_QUERY = "select ID, NAME from QUIZ where ID = ? or NAME LIKE ?";
 	private static final String INSERT_QUERY = "INSERT into QUIZ (name) values(?)";
 	private static final String UPDATE_QUERY = "UPDATE QUIZ SET NAME=? WHERE ID = ?";
 	private static final String DELETE_QUERY = "DELETE FROM QUIZ  WHERE ID = ?";
@@ -24,7 +23,6 @@ public class QuizJDBCDAO {
 	private String password;
 	private String username;
 
-	
 	public QuizJDBCDAO() {
 		ConfigurationService conf = ConfigurationService.getInstance();
 		this.username = conf.getConfigurationValue("db.username", "");
@@ -86,10 +84,12 @@ public class QuizJDBCDAO {
 	}
 
 	public List<Quiz> search(Quiz quizCriterion) throws SearchFailedException {
-
+		String searchQuery = ConfigurationService.getInstance()
+				.getConfigurationValue(ConfigEntry.DB_QUERIES_QUIZ_SEARCHQUERY,"");
 		List<Quiz> quizList = new ArrayList<>();
 		try (Connection connection = getConnection();
-				PreparedStatement pstmt = connection.prepareStatement(SEARCH_QUERY)) {
+
+				PreparedStatement pstmt = connection.prepareStatement(searchQuery)) {
 
 			pstmt.setInt(1, quizCriterion.getId());
 			pstmt.setString(2, "%" + quizCriterion.getTitle() + "%");
