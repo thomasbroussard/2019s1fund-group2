@@ -19,7 +19,7 @@ public class TestQuizJDBCDAO {
 			return;
 		}
 		
-		QuizJDBCDAO dao = new QuizJDBCDAO();
+		QuizJDBCDAO dao = QuizJDBCDAO.getInstance();
 		
 		//when
 		dao.create(new Quiz("Why is Java so cool?"));
