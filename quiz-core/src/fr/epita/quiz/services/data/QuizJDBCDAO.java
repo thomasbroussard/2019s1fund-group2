@@ -17,7 +17,7 @@ import fr.epita.quiz.services.ConfigurationService;
 public class QuizJDBCDAO {
 
 	private static final String SEARCH_QUERY = "select ID, NAME from QUIZ where ID = ? or NAME LIKE ?";
-	private static final String INSERT_QUERY = "INSERT into QUIZ values(?)";
+	private static final String INSERT_QUERY = "INSERT into QUIZ (name) values(?)";
 	private static final String UPDATE_QUERY = "UPDATE QUIZ SET NAME=? WHERE ID = ?";
 	private static final String DELETE_QUERY = "DELETE FROM QUIZ  WHERE ID = ?";
 	private String url;
@@ -92,7 +92,7 @@ public class QuizJDBCDAO {
 				PreparedStatement pstmt = connection.prepareStatement(SEARCH_QUERY)) {
 
 			pstmt.setInt(1, quizCriterion.getId());
-			pstmt.setString(2, quizCriterion.getTitle() + "%");
+			pstmt.setString(2, "%" + quizCriterion.getTitle() + "%");
 
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
