@@ -1,6 +1,7 @@
 package fr.epita.quiz.tests;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import fr.epita.quiz.datamodel.Quiz;
@@ -10,7 +11,7 @@ import fr.epita.quiz.services.data.QuizFileDAO;
 
 public class TestQuizFileDAO {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		//given
 		QuizFileDAO dao = new QuizFileDAO(new File("/tmp/quizTest.txt"));
 		Quiz quiz = new Quiz("Intermediate Quiz for Java and OOP");

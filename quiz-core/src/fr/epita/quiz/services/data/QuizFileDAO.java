@@ -2,6 +2,7 @@ package fr.epita.quiz.services.data;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class QuizFileDAO {
 	
 	private File file;
 
-	public QuizFileDAO(File file) {
+	public QuizFileDAO(File file) throws IOException {
 		
 		if (!file.exists()) {
 			file.getAbsoluteFile().getParentFile().mkdirs();
